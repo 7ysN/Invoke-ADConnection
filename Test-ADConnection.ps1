@@ -1,4 +1,4 @@
-# Author: Yuval Saban
+
 # This Script helps to perform a connectivity check against the Active Directory LDAP service.
 
 Function Test-ADConnection {
