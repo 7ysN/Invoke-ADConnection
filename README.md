@@ -2,6 +2,10 @@
 **This tool takes all the domain users and performs a connectivity check against the Active Directory LDAP Service.
 It checks the User's loggon attepmts before running, to ignore users from lockout. Only users whose password is correct will be displayed.**
 
+
+## Example:
+![image](https://github.com/7ysN/Invoke-ADConnection/assets/62604022/ea4b348d-c921-4491-aae7-f74161a20fa9)
+
 #
 ### Disclaimer
 
