@@ -1,11 +1,8 @@
-# Test-ADConnection
-**This script performs a connectivity check against Active Directory LDAP Service.
-The script takes all active users from the current domain and tries to log in with the given password.
-The script will only display users whose password is correct.**
+# Invoke-ADConnection
+**This tool takes all the domain users and performs a connectivity check against the Active Directory LDAP Service.
+It checks the User's loggon attepmts before running, to ignore users from lockout. Only users whose password is correct will be displayed.**
 
-## Usage:
-`PS C:\tmp> . .\Test-ADConnection.ps1`
+#
+### Disclaimer
 
-`PS C:\tmp> Enter A Password: Aa123456!`
-## Output Example:
-![1](https://user-images.githubusercontent.com/62604022/193708206-7475fc1d-c928-49ee-839b-4f480aac4968.png)
+###### This tool is intended for educational and authorized security operations only. Unauthorized use of this tool may violate applicable laws and regulations. The developers and distributors of this tool assume no responsibility for any misuse or damage caused by its use. By using this tool, you agree to use it in compliance with all relevant laws and only for lawful purposes, such as cybersecurity research, penetration testing on systems you own or have explicit permission to test, and educational demonstrations. Unauthorized access to computer systems is illegal and unethical. Use this tool responsibly.
