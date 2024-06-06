@@ -1,5 +1,4 @@
 # Author: ysN
-## This Script helps to perform a connectivity check against the Active Directory LDAP service.
 
 Function Invoke-ADConnection {
     param(
