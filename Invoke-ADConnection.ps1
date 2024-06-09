@@ -39,9 +39,20 @@ $users | ForEach-Object {
         Write-Progress -Activity "In Progress:" -Status  "$Counter/$total Completed" -PercentComplete($Counter/$total*100)
         $Counter++
     } else {
-        Write-Host -ForegroundColor Red "[-] Skipped: $UserName have $logonAttempts loggon attempts!"
+        Write-Host -ForegroundColor Red "[!] Skipped: $UserName have $logonAttempts loggon attempts!"
     }
 }
+
 Write-Host "`n"
-Write-Host -ForegroundColor Yellow "[+] Users Found: $users_found_num"
-Write-Host -ForegroundColor Green "Saving Results To: 'UsersFound.txt'" 
+try {
+    $users_found_num = 0
+    if (Test-Path .\UsersFound.txt) {
+        $users_found_num = (Get-Content .\UsersFound.txt).Count
+        Write-Host -ForegroundColor Yellow "[+] Users Found: $users_found_num"
+        Write-Host -ForegroundColor Green "Saving Results To: 'UsersFound.txt'" 
+    } else {
+        throw "File not found"
+    }
+} catch {
+    Write-Host -ForegroundColor Red "[-] No Users Found!"
+}
